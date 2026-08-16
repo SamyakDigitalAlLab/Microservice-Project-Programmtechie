@@ -1,9 +1,12 @@
 com\programmingtecie\order\service\repository\OrderRepository.class
-com\programmingtecie\order\service\model\OrderLineItem.class
-com\programmingtecie\order\service\controller\OrderController.class
-com\programmingtecie\order\service\dto\OrderLineItemdto.class
+com\programmingtecie\order\service\dto\InventoryResponse$InventoryResponseBuilder.class
 com\programmingtecie\order\service\dto\OrderRequest.class
 com\programmingtecie\order\service\dto\OrderResponse.class
 com\programmingtecie\order\service\model\Order.class
+com\programmingtecie\order\service\dto\InventoryResponse.class
 com\programmingtecie\order\service\services\OrderService.class
 com\programmingtecie\order\service\OrderServiceApplication.class
+com\programmingtecie\order\service\model\OrderLineItem.class
+com\programmingtecie\order\service\controller\OrderController.class
+com\programmingtecie\order\service\dto\OrderLineItemdto.class
+com\programmingtecie\order\service\config\WebClientConfig.class
