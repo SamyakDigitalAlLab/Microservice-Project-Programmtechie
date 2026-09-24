@@ -1,0 +1,100 @@
+{
+  "title": "Microservices Overview",
+  "uid": "microservices-overview",
+  "timezone": "browser",
+  "refresh": "10s",
+  "time": { "from": "now-15m", "to": "now" },
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "id": 1,
+      "title": "Service Health (up=1)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 24, "x": 0, "y": 0 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "up", "legendFormat": "{{job}}" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "HTTP Request Rate (req/s)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_count[1m])) by (application, uri)", "legendFormat": "{{application}} {{uri}}" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "HTTP Request Count (total)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "sum(http_server_requests_seconds_count) by (application, status)", "legendFormat": "{{application}} [{{status}}]" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "HTTP 5xx Error Rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_count{outcome=\"SERVER_ERROR\"}[1m])) by (application)", "legendFormat": "{{application}}" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Average Request Latency (s)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_sum[1m])) by (application) / sum(rate(http_server_requests_seconds_count[1m])) by (application)", "legendFormat": "{{application}}" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "JVM Memory Used (bytes)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "sum(jvm_memory_used_bytes) by (application, area)", "legendFormat": "{{application}} {{area}}" }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "JVM / Process CPU Usage",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 20 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "process_cpu_usage", "legendFormat": "{{application}}" }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Active JVM Threads",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 28 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "jvm_threads_live_threads", "legendFormat": "{{application}}" }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Resilience4j Circuit Breaker State (inventory)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 28 },
+      "datasource": "Prometheus",
+      "targets": [
+        { "expr": "resilience4j_circuitbreaker_state{name=\"inventory\"}", "legendFormat": "{{state}}" }
+      ]
+    }
+  ]
+}

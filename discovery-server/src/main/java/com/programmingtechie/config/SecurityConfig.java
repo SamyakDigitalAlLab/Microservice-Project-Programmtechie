@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/eureka/**")
                 )
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/eureka/**").authenticated()
                         .anyRequest().authenticated()
                 )
